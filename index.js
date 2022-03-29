@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 2608
 
-app.get('/', (req, res) => {
+app.get('/tuyenbui', (req, res) => {
   res.send('Tuyến ơi!!!')
 })
 
