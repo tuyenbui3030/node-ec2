@@ -73,16 +73,22 @@ const getSession = (fullUrl) => {
   const urlParts = url.parse(fullUrl, true);
   return urlParts.query.BV_SessionID;
 };
-
-app.get('/tuyenbui', async (req, res) => {
+app.get('/tobibui', (req, res) => {
+  res.send("bebebebe");
+})
+app.post('/tuyenbui', async (req, res) => {
   try {
+    console.log("Vô");
     const a = await process();
     res.send({
       message: 'Success',
       data: a
     })
   } catch (error) {
-    res.send(error)
+    res.send({
+      message: 'faile',
+      error: error
+    })
   }
 })
 
