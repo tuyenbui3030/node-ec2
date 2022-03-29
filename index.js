@@ -85,6 +85,7 @@ app.post('/tuyenbui', async (req, res) => {
       data: a
     })
   } catch (error) {
+    console.log("Lỗi", error)
     res.send({
       message: 'faile',
       error: error
