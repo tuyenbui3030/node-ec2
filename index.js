@@ -3,17 +3,19 @@ const cheerio = require("cheerio");
 const express = require('express');
 const url = require("url");
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const port = 2608
 
-const process = async () => {
-  // const browser = await puppeteer.launch({ headless: false });
-  const browser = await puppeteer.launch();
+const process = async (username, password) => {
+  const browser = await puppeteer.launch({ headless: false });
+  // const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.rakuten-sec.co.jp/", {
     waitUntil: "networkidle0",
   });
-  await page.type("#form-login-id", "TYJJ7557");
-  await page.type("#form-login-pass", "hQkD9!NWhRp8");
+  await page.type("#form-login-id", username);
+  await page.type("#form-login-pass", password);
   // click and wait for navigation
   await Promise.all([
     page.click("#login-btn"),
@@ -77,9 +79,10 @@ app.get('/tobibui', (req, res) => {
   res.send("bebebebe");
 })
 app.post('/tuyenbui', async (req, res) => {
+  const {username, password} = req.body;
   try {
     console.log("Vô");
-    const a = await process();
+    const a = await process(username, password);
     res.send({
       message: 'Success',
       data: a
