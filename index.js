@@ -8,8 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 const port = 2608
 
 const process = async (username, password) => {
-  const browser = await puppeteer.launch({ headless: false });
-  // const browser = await puppeteer.launch();
+  // const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.rakuten-sec.co.jp/", {
     waitUntil: "networkidle0",
